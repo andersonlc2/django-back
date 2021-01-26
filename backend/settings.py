@@ -25,7 +25,7 @@ SECRET_KEY = '+a+jl^b*0=clowodahutak=8hn9m$7zzcupg_$k*(_*w+2!^l9'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -123,7 +123,5 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-CORS_ORIGIN_WHITELIST = (
-    'http://localhost:3000',
+CORS_ORIGIN_ALLOW_ALL = True
 
-)
