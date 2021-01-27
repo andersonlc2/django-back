@@ -1,39 +1,47 @@
-# OS generated files #
-######################
-.DS_Store
-.DS_Store?
-._*
-.Spotlight-V100
-.Trashes
-ehthumbs.db
-Thumbs.db
-
-.vscode/
-venv/
+# Byte-compiled / optimized / DLL files
 __pycache__/
-migrations/
+*.py[cod]
+*$py.class
 
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+# C extensions
+*.so
 
-# dependencies
-/node_modules
-/.pnp
-.pnp.js
-.eslintcache
-# testing
-/coverage
+# Distribution / packaging
+.Python
+env/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
 
-# production
-/build
+# Django stuff:
+*.log
+local_settings.py
 
-# misc
-.DS_Store
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
+# pyenv
+.python-version
 
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
+# dotenv
 .env
+
+# virtualenv
+.venv
+venv/
+ENV/
+
+# mypy
+.mypy_cache/
+
+# vscode
+.vscode/
