@@ -39,9 +39,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
     'corsheaders',  # add this
     'rest_framework',  # add this
-    'barb',
+    'barb.apps.BarbConfig',
     'todo',  # add this
 ]
 
@@ -138,4 +139,6 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 
 CORS_ORIGIN_ALLOW_ALL = True
+
+AUTH_USER_MODEL = "barb.Client"
 

@@ -1,23 +1,22 @@
 import datetime as dt
 from django.db import models
+from django.contrib.auth.models import AbstractUser
 
 # Create your models here.
 
 
-class Client(models.Model):
-    first_name = models.CharField(max_length=120)
-    last_name = models.CharField(max_length=120)
-    email = models.EmailField()
-    tel = models.IntegerField()
-    date_birth = models.DateField("date of birth")
-    zip_code = models.IntegerField()
-    street = models.CharField(max_length=120)
-    number = models.IntegerField()
-    complement = models.CharField(max_length=120)
-    district = models.CharField(max_length=120)
-    city = models.CharField(max_length=120)
-    state = models.CharField(max_length=120)
-    
+class Client(AbstractUser):
+    tel = models.IntegerField(blank=True, null=True)
+    date_birth = models.DateField(blank=True, null=True)
+    zip_code = models.IntegerField(blank=True, null=True)
+    street = models.CharField(max_length=120, blank=True)
+    number = models.IntegerField(blank=True, null=True)
+    complement = models.CharField(max_length=120, blank=True)
+    district = models.CharField(max_length=120, blank=True)
+    city = models.CharField(max_length=120, blank=True)
+    state = models.CharField(max_length=120, blank=True)
+    added = models.DateField(auto_now_add=True, editable=False, null=True)
+
     def __str__(self):
         return f"{self.first_name} {self.last_name}"
 
@@ -58,14 +57,20 @@ class Scheduling(models.Model):
     serviceSealing = models.BooleanField(default=False)
 
     def __str__(self):
-        return f"Agendado para {self.hour} "
+        dif = dt.timedelta(hours=-3)
+        tz = dt.timezone(dif)
+        hour = self.hour.astimezone(tz)
+        return f"Agendado para dia {hour.strftime('%d/%m/%Y as %H:%M h')}"
 
     def hour_finish(self):
-        finish = self.hour
+        dif = dt.timedelta(hours=-3)
+        tz = dt.timezone(dif)
+        hour = self.hour.astimezone(tz)
+        finish = hour
         if self.serviceHair:
             finish += dt.timedelta(minutes=30)
-        elif self.serviceBeard:
+        if self.serviceBeard:
             finish += dt.timedelta(minutes=15)
-        elif self.serviceSealing:
+        if self.serviceSealing:
             finish += dt.timedelta(minutes=45)
-        return finish
+        return finish.strftime('%H:%M')
